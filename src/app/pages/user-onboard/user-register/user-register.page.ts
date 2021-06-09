@@ -12,6 +12,7 @@ import {
   ConfirmedValidator,
 } from 'src/app/form-validators/validators';
 import { CommonComponentService } from 'src/app/shared/common-component/common-component.service';
+import { UserRegisterService } from 'src/app/shared/user-register/user-register.service';
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.page.html',
@@ -29,7 +30,8 @@ export class UserRegisterPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private router: Router,
-    private common: CommonComponentService
+    private common: CommonComponentService,
+    private userRegService: UserRegisterService
   ) {
     let email_pattern =
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -75,7 +77,9 @@ export class UserRegisterPage implements OnInit {
   }
 
   // oninit
-  ngOnInit() {}
+  ngOnInit() {
+    this.userRegService.fetchUser();
+  }
 
   // get reactive form error
   get f() {

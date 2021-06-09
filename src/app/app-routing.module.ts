@@ -26,20 +26,6 @@ const routes: Routes = [
     redirectTo: 'user-register',
     pathMatch: 'full',
   },
-  {
-    path: 'create-room',
-    loadChildren: () =>
-      import('./pages/rooms/create-room/create-room.module').then(
-        (m) => m.CreateRoomPageModule
-      ),
-  },
-  {
-    path: 'join-room',
-    loadChildren: () =>
-      import('./pages/rooms/join-room/join-room.module').then(
-        (m) => m.JoinRoomPageModule
-      ),
-  },
 ];
 @NgModule({
   imports: [

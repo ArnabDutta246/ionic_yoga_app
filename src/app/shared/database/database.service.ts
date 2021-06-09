@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DatabaseService {
   public allUrl = {
-    registeredUser: 'asset/data/registered_user.json',
+    registeredUser: 'assets/data/registered_user.json',
   };
   constructor() {}
 }

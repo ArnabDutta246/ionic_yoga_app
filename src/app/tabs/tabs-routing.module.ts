@@ -4,33 +4,49 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'routine',
+        loadChildren: () =>
+          import('../pages/routine/routine/routine.module').then(
+            (m) => m.RoutinePageModule
+          ),
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'progress',
+        loadChildren: () =>
+          import('../pages/progress/progress/progress.module').then(
+            (m) => m.ProgressPageModule
+          ),
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'create-yoga',
+        loadChildren: () =>
+          import('../pages/create-yoga/create-yoga/create-yoga.module').then(
+            (m) => m.CreateYogaPageModule
+          ),
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('../pages/profile/profile/profile.module').then(
+            (m) => m.ProfilePageModule
+          ),
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
-      }
-    ]
+        redirectTo: '/routine',
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
-    pathMatch: 'full'
-  }
+    redirectTo: '/routine',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

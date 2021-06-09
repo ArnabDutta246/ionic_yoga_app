@@ -11,7 +11,9 @@ export class UserRegisterService {
 
   // fetch user
   fetchUser() {
-    return this.http.get(this.db.allUrl.registeredUser);
+    return this.http.get(this.db.allUrl.registeredUser).subscribe((res) => {
+      console.log(res);
+    });
   }
   // check user exist
   checkTheUserExist(user: User) {}
