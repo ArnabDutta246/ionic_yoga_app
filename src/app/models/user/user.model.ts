@@ -9,3 +9,8 @@ export interface User {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface loginRegResponse {
+  isExist: boolean;
+  credential: boolean;
+}

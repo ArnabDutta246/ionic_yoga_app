@@ -11,7 +11,7 @@ import {
   calculateErrors,
   ConfirmedValidator,
 } from 'src/app/form-validators/validators';
-import { User } from 'src/app/models/user/user.model';
+import { loginRegResponse, User } from 'src/app/models/user/user.model';
 import { CommonComponentService } from 'src/app/shared/common-component/common-component.service';
 import { UserRegisterService } from 'src/app/shared/user-register/user-register.service';
 @Component({
@@ -93,20 +93,28 @@ export class UserRegisterPage implements OnInit {
     } else {
       let user: User = this.roomRegisterForm.value;
       console.log('get user data', user);
-      this.userRegService.checkTheUserExist(user).then((res) => {
-        if (res) {
-          this.common.sucessAlert(
-            'Your account created successfully. Thanks you to join in our organisation'
-          );
-        } else if (!res) {
-          this.common.errorAlert(['Please try again '], 'danger');
-        } else {
-          this.common.errorAlert(
-            ['Someting is mismatch this time. Please try again'],
-            'danger'
-          );
-        }
-      });
+      this.userRegService
+        .checkTheUserExist(user)
+        .then((res: loginRegResponse) => {
+          if (res.isExist) {
+            this.common.waringAlert(
+              [
+                'The account already registered before.Please visit login page for sign in process',
+              ],
+              'warning',
+              this.goToSignIn.bind(this)
+            );
+          } else if (!res.isExist) {
+            this.common.sucessAlert(
+              'Your account created successfully. Thanks you to join in our organisation'
+            );
+          } else {
+            this.common.errorAlert(
+              ['Someting is mismatch this time. Please try again'],
+              'danger'
+            );
+          }
+        });
     }
     //this.router.navigate(['/join-room']);
   }

@@ -25,9 +25,10 @@ export class AlertModalComponent implements OnInit, OnChanges {
     console.log('onchanges', this.alertMessage);
   }
 
-  dismiss() {
+  dismiss(response: boolean) {
+    console.log('alert response', response);
     this.modelController.dismiss({
-      backData: 'backdata',
+      responseback: response,
     });
   }
 }

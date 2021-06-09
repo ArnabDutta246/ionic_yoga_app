@@ -151,10 +151,14 @@ export class CommonComponentService {
   }
   sucessAlert(message: string, mood = 'success', clb?) {
     let successMsg = [message];
-    return this.setAlertMessage(successMsg, mood);
+    return this.setAlertMessage(successMsg, mood, clb);
   }
   waringAlert(errors: string[], mood = 'waring', clb?) {
-    return this.setAlertMessage(errors, mood);
+    return this.setAlertMessage(errors, mood, clb);
+  }
+  normalAlert(message: string, mood = 'normal', clb?) {
+    let successMsg = [message];
+    return this.setAlertMessage(successMsg, mood, clb);
   }
   setAlertMessage(messages, mood, clb?) {
     let alertMessage: AlertMessage = {
@@ -172,7 +176,7 @@ export class CommonComponentService {
           ? 'Successfull !!'
           : mood == 'danger'
           ? 'Something went wrong !!'
-          : 'Please check again !!',
+          : 'Attention !!',
     };
     return this.presentModalAlert(alertMessage, clb);
   }
@@ -190,7 +194,9 @@ export class CommonComponentService {
     });
 
     modal.onDidDismiss().then((data: any) => {
-      if (clb) clb(data);
+      if (clb && data.data.responseback) {
+        clb(data);
+      }
       return data;
     });
     return await modal.present();

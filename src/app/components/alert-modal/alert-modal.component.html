@@ -19,9 +19,8 @@
       </li>
     </ul>
   </div>
-
-  <!-- <ion-button expand="block" [color]="alertMessage?.mood" (click)="dismiss()">Dismiss</ion-button> -->
 </ion-content>
+
 <ion-footer>
   <ion-row class="ion-text-center ion-padding">
     <ion-col size="12" *ngIf="alertMessage.mood == 'success'" class="ion-no-padding ion-no-margin">
@@ -29,12 +28,16 @@
         Continue </ion-button>
     </ion-col>
     <ion-col *ngIf="alertMessage.mood == 'warning'" class="ion-no-padding ion-no-margin">
-      <ion-button (click)="dismiss()" expand="block" fill="outline" color="primary">
+      <ion-button (click)="dismiss(true)" expand="block" fill="outline" color="primary">
         Confirm</ion-button>
     </ion-col>
     <ion-col class="ion-no-padding ion-no-margin"
       *ngIf="alertMessage.mood == 'danger'|| alertMessage.mood == 'warning'">
-      <ion-button expand="block" color="danger" (click)="dismiss()">
+      <ion-button expand="block" color="danger" (click)="dismiss(alertMessage.mood == 'warning'?false:true)">
+        Dismiss</ion-button>
+    </ion-col>
+    <ion-col class="ion-no-padding ion-no-margin" *ngIf="alertMessage.mood == 'normal'">
+      <ion-button expand="block" color="primary" (click)="dismiss()">
         Dismiss</ion-button>
     </ion-col>
   </ion-row>
