@@ -1,0 +1,74 @@
+<ion-content fullscreen="true" class="ion-padding user-onboard-register">
+  <ion-item lines="none">
+    <ion-buttons slot="end">
+      <ion-button (click)="goToSignIn()">
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>Sign In
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+  <!-- header -->
+  <ion-text>
+    <h3>
+      Create Account
+    </h3>
+  </ion-text>
+  <ion-text color="medium">
+    <small>
+      If your already have account in any room previously, please visti login page for signin or you may able join in
+      new room
+    </small>
+  </ion-text>
+
+  <!-- form -->
+  <form [formGroup]="roomRegisterForm" (ngSubmit)="submit()">
+    <!-- name -->
+    <ion-item color="light" class="ion-margin-top ion-margin-bottom">
+      <ion-label position="floating">
+        <ion-icon name="person-outline"></ion-icon>
+        Enter you full name
+      </ion-label>
+      <ion-input type="text" formControlName="name" required></ion-input>
+    </ion-item>
+    <!-- email -->
+    <ion-item color="light" class="ion-margin-bottom">
+      <ion-label position="floating">
+        <ion-icon name="mail-outline"></ion-icon>
+        Your email address
+      </ion-label>
+      <ion-input type="email" formControlName="email" required></ion-input>
+    </ion-item>
+    <!-- phone -->
+    <ion-item color="light" class="ion-margin-bottom">
+      <ion-label position="floating">
+        <ion-icon name="call-outline"></ion-icon>
+        Contact number
+      </ion-label>
+      <ion-input formControlName="phone" required></ion-input>
+    </ion-item>
+    <!-- pass -->
+    <ion-item color="light" class="ion-margin-bottom">
+      <ion-label position="floating">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        Your Password
+      </ion-label>
+      <ion-input [type]="togglePassword?'text':'password'" formControlName="password" required></ion-input>
+      <ion-icon [name]="togglePassword?'eye-off-outline':'eye-outline'" slot="end"
+        (click)="togglePassword = !togglePassword"></ion-icon>
+    </ion-item>
+    <!-- confirm pass -->
+    <ion-item color="light" class="ion-margin-bottom">
+      <ion-label position="floating">
+        <ion-icon name="bulb-outline"></ion-icon>
+        Confirm Password
+      </ion-label>
+      <ion-input [type]="togglePasswordTwo?'text':'password'" formControlName="confirmPassword" required></ion-input>
+      <ion-icon [name]="togglePasswordTwo?'eye-off-outline':'eye-outline'" slot="end"
+        (click)="togglePasswordTwo = !togglePasswordTwo"></ion-icon>
+    </ion-item>
+    <!-- button -->
+    <ion-button fill="solid" size="default" expand="block" color="tertiary" class="ion-margin-top" type="submit">
+      Complete Sign up
+    </ion-button>
+
+  </form>
+</ion-content>

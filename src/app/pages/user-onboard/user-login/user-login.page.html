@@ -1,0 +1,49 @@
+<ion-content fullscreen="true" class="ion-padding user-onboard-register">
+  <ion-item lines="none">
+    <ion-buttons slot="end">
+      <ion-button (click)="goToSignUp()">
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>Sign Up
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+  <!-- header -->
+  <ion-text>
+    <h3>
+      Welcome Back
+    </h3>
+  </ion-text>
+  <ion-text color="medium">
+    <small>
+      If you don't have any account in any room previously, please sign up before to create new room or you may able
+      join in new room
+    </small>
+  </ion-text>
+  <br><br>
+  <!-- form -->
+  <form [formGroup]="roomLoginForm" (ngSubmit)="submit()">
+    <!-- email -->
+    <ion-item color="light" class="ion-margin-bottom">
+      <ion-label position="floating">
+        <ion-icon name="mail-outline"></ion-icon>
+        Your email address
+      </ion-label>
+      <ion-input type="email" formControlName="email" required></ion-input>
+    </ion-item>
+
+    <!-- pass -->
+    <ion-item color="light" class="ion-margin-bottom">
+      <ion-label position="floating">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        Your Password
+      </ion-label>
+      <ion-input [type]="togglePassField?'text':'password'" formControlName="password" required></ion-input>
+      <ion-icon [name]="togglePassField?'eye-off-outline':'eye-outline'" slot="end"
+        (click)="togglePassField = !togglePassField"></ion-icon>
+    </ion-item>
+
+    <!-- button -->
+    <ion-button fill="solid" size="default" expand="block" color="tertiary" class="ion-margin-top" type="submit">
+      Sign in
+    </ion-button>
+  </form>
+</ion-content>

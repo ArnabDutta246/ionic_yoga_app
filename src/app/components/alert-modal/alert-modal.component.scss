@@ -1,0 +1,31 @@
+.alert-success,
+.alert-danger,
+.alert-warning {
+  margin: 10px;
+  padding: 0.2px;
+  padding-bottom: 0px;
+  border: 2px solid black;
+  background-color: rgb(226, 255, 214);
+  ul {
+    list-style: none;
+    padding-inline-start: 10px;
+  }
+  li {
+    text-align: left;
+  }
+}
+.alert-success {
+  border-color: rgb(101, 255, 101);
+  background-color: rgb(226, 255, 214);
+  color: rgb(79, 194, 29);
+}
+.alert-danger {
+  border-color: rgb(255, 177, 177);
+  background-color: rgb(250, 227, 227);
+  color: rgb(255, 84, 84);
+}
+.alert-warning {
+  border-color: rgb(255, 218, 149);
+  background-color: rgb(255, 249, 237);
+  color: rgb(69, 60, 5);
+}

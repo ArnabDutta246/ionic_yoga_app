@@ -1,0 +1,41 @@
+<ion-content *ngIf="alertMessage.message.length>0">
+  <ion-item lines="none">
+    <ion-label>
+      <ion-text color="dark">
+        <h2>{{alertMessage?.header}}</h2>
+      </ion-text>
+    </ion-label>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-item>
+
+  <div [ngClass]="'alert-'+alertMessage.mood">
+    <ul color="dark">
+      <li *ngFor="let message of alertMessage?.message">
+        <ion-icon [name]="alertMessage?.icon"></ion-icon> {{message}}
+      </li>
+    </ul>
+  </div>
+
+  <!-- <ion-button expand="block" [color]="alertMessage?.mood" (click)="dismiss()">Dismiss</ion-button> -->
+</ion-content>
+<ion-footer>
+  <ion-row class="ion-text-center ion-padding">
+    <ion-col size="12" *ngIf="alertMessage.mood == 'success'" class="ion-no-padding ion-no-margin">
+      <ion-button expand="block" color="success" (click)="dismiss()">
+        Continue </ion-button>
+    </ion-col>
+    <ion-col *ngIf="alertMessage.mood == 'warning'" class="ion-no-padding ion-no-margin">
+      <ion-button (click)="dismiss()" expand="block" fill="outline" color="primary">
+        Confirm</ion-button>
+    </ion-col>
+    <ion-col class="ion-no-padding ion-no-margin"
+      *ngIf="alertMessage.mood == 'danger'|| alertMessage.mood == 'warning'">
+      <ion-button expand="block" color="danger" (click)="dismiss()">
+        Dismiss</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
