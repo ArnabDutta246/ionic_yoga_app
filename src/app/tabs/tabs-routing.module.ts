@@ -37,14 +37,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/routine',
+        redirectTo: 'routine',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/routine',
+    redirectTo: 'routine',
     pathMatch: 'full',
   },
 ];

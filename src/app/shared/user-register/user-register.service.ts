@@ -1,3 +1,4 @@
+import { ClassField } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { loginRegResponse, User } from 'src/app/models/user/user.model';
@@ -29,25 +30,27 @@ export class UserRegisterService {
       });
   }
   // return check response
-  checkLoginOrReg(res: User[], user: User, login: boolean) {
+  async checkLoginOrReg(res: User[], user: User, login: boolean) {
     let response: loginRegResponse = {
       isExist: true,
       credential: true,
     };
 
-    let findMember = res.filter(
+    let findMember = (await res.filter(
       (userFind) => userFind.email == user.email
-    ) as User[];
-    response = {
+    )) as User[];
+
+    console.log('member we get', findMember);
+
+    return (response = {
       isExist: findMember.length > 0 ? true : false,
-      credential: login
+      credential: !login
         ? findMember.length > 0
           ? true
           : false
         : findMember.length > 0 && findMember[0].password == user.password
         ? true
         : false,
-    };
-    return response;
+    });
   }
 }
