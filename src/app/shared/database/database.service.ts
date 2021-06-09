@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,7 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class DatabaseService {
   public allUrl = {
-    registeredUser: 'assets/data/registered_user.json',
+    registeredUser: 'assets/data/reg_user.json',
   };
-  constructor() {}
+  constructor(private http: HttpClient) {}
+
+  getDataFromHttp(url: string) {
+    return this.http.get(url);
+  }
 }

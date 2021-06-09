@@ -1,0 +1,20 @@
+ [
+  {
+    "id": "user001",
+    "name": "Arnab",
+    "email": "arnab001@gmail.com",
+    "password": "arnab001",
+    "phone": "0123467890",
+    "inRoom": true,
+    "room_id": "room001"
+  },
+  {
+    "id": "user002",
+    "name": "Joy",
+    "email": "joy001@gmail.com",
+    "password": "joy001",
+    "phone": "0123467891",
+    "inRoom": true,
+    "room_id": "room002"
+  }
+]

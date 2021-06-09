@@ -11,6 +11,7 @@ import {
   calculateErrors,
   ConfirmedValidator,
 } from 'src/app/form-validators/validators';
+import { User } from 'src/app/models/user/user.model';
 import { CommonComponentService } from 'src/app/shared/common-component/common-component.service';
 import { UserRegisterService } from 'src/app/shared/user-register/user-register.service';
 @Component({
@@ -77,9 +78,7 @@ export class UserRegisterPage implements OnInit {
   }
 
   // oninit
-  ngOnInit() {
-    this.userRegService.fetchUser();
-  }
+  ngOnInit() {}
 
   // get reactive form error
   get f() {
@@ -89,21 +88,25 @@ export class UserRegisterPage implements OnInit {
   // submit
   submit() {
     if (this.roomRegisterForm.invalid) {
-      // let error = getFormErrors(this.roomRegisterForm);
       let error = calculateErrors(this.roomRegisterForm);
-      console.log('all errors');
-      console.log(error);
-      let res = this.common.errorAlert(
-        error,
-        'danger',
-        this.callbackRes.bind(this)
-      );
-      console.log(res);
+      this.common.errorAlert(error, 'danger', this.callbackRes.bind(this));
     } else {
-      let res = this.common.sucessAlert(
-        'Your account created successfully. Thanks you to join in our organisation'
-      );
-      console.log(res);
+      let user: User = this.roomRegisterForm.value;
+      console.log('get user data', user);
+      this.userRegService.checkTheUserExist(user).then((res) => {
+        if (res) {
+          this.common.sucessAlert(
+            'Your account created successfully. Thanks you to join in our organisation'
+          );
+        } else if (!res) {
+          this.common.errorAlert(['Please try again '], 'danger');
+        } else {
+          this.common.errorAlert(
+            ['Someting is mismatch this time. Please try again'],
+            'danger'
+          );
+        }
+      });
     }
     //this.router.navigate(['/join-room']);
   }
