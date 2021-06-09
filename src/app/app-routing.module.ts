@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthguardService } from './shared/authguard/authguard.service';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'user-login',
     loadChildren: () =>
-      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+      import('./pages/user-onboard/user-login/user-login.module').then(
+        (m) => m.UserLoginPageModule
+      ),
   },
   {
     path: 'user-register',
@@ -15,15 +18,14 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'user-login',
+    path: 'home',
+    canActivate: [AuthguardService],
     loadChildren: () =>
-      import('./pages/user-onboard/user-login/user-login.module').then(
-        (m) => m.UserLoginPageModule
-      ),
+      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
   },
   {
     path: '',
-    redirectTo: 'user-register',
+    redirectTo: '/user-login',
     pathMatch: 'full',
   },
 ];

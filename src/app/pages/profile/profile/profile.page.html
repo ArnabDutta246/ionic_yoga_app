@@ -1,9 +1,81 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>profile</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
+  <div class="profile-header">
+    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      alt="profile_image" srcset="">
+    <div class="user_name">Hellow {{sessionData?.user?.name}}</div>
+    <!-- <div class="user_email">{{sessionData?.user?.email}}</div> -->
+  </div>
 
+
+
+  <ion-list>
+    <ion-list-header>
+      Personal info
+    </ion-list-header>
+    <ion-toolbar color="light">
+      <ion-row>
+        <ion-col size="2" class="ion-padding">
+          <ion-icon color="medium" name="person-outline"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding">
+          <ion-text color="medium">
+            <span class="details">{{sessionData?.user?.name}}</span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+
+    <ion-toolbar color="light">
+      <ion-row>
+        <ion-col size="2" class="ion-padding">
+          <ion-icon color="medium" name="mail-outline"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding">
+          <ion-text color="medium">
+            <span class="details">{{sessionData?.user?.email}}</span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+
+    <ion-toolbar color="light">
+      <ion-row>
+        <ion-col size="2" class="ion-padding">
+          <ion-icon color="medium" name="call-outline"></ion-icon>
+        </ion-col>
+        <ion-col class="ion-padding">
+          <ion-text color="medium">
+            <span class="details">{{sessionData?.user?.phone}}</span>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-list>
+
+
+  <ion-list>
+    <ion-list-header>
+      Activities
+    </ion-list-header>
+    <ion-item lines="full">
+      <ion-icon slot="start" color="medium" name="alarm-outline">
+      </ion-icon>
+      <ion-label slot="start" color="dark">Time {{time|date:'medium'}} </ion-label>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-icon slot="start" color="medium" name="log-out-outline">
+      </ion-icon>
+      <ion-buttons slot="start">
+        <ion-button color="danger" (click)="sessionSignOut()">
+          Sign out
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
 </ion-content>

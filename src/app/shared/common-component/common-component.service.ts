@@ -139,8 +139,8 @@ export class CommonComponentService {
   async presentToaster(msg) {
     const toast = await this.toastController.create({
       message: msg,
-      position: 'bottom',
-      duration: 3500,
+      position: 'top',
+      duration: 1800,
     });
     (await toast).present();
   }

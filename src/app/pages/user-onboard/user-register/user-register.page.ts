@@ -97,6 +97,7 @@ export class UserRegisterPage implements OnInit {
         .checkTheUserExist(user)
         .then((res: loginRegResponse) => {
           if (res.isExist) {
+            this.resetForm();
             this.common.waringAlert(
               [
                 'The account already registered before.Please visit login page for sign in process',
@@ -108,6 +109,7 @@ export class UserRegisterPage implements OnInit {
             this.common.sucessAlert(
               'Your account created successfully. Thanks you to join in our organisation'
             );
+            this.resetForm();
           } else {
             this.common.errorAlert(
               ['Someting is mismatch this time. Please try again'],
@@ -116,7 +118,10 @@ export class UserRegisterPage implements OnInit {
           }
         });
     }
-    //this.router.navigate(['/join-room']);
+  }
+
+  resetForm() {
+    this.roomRegisterForm.reset();
   }
   callbackRes(res) {
     console.log(res);

@@ -1,0 +1,27 @@
+.profile-header {
+  height: 40%;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  padding-top: 40px;
+  background-color: navy;
+  color: #fff;
+  img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid rgb(219, 222, 255);
+  }
+  .user_name {
+    font-weight: 700;
+  }
+  .user_email {
+    font-weight: 100;
+    font-size: 14px;
+  }
+}
+.details {
+  font-weight: 300;
+  font-size: 18px;
+}
