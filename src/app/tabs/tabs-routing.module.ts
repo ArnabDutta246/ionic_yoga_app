@@ -24,9 +24,16 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'yogas',
+        loadChildren: () =>
+          import('../pages/yogas/yogas/yogas.module').then(
+            (m) => m.YogasPageModule
+          ),
+      },
+      {
         path: 'create-yoga',
         loadChildren: () =>
-          import('../pages/create-yoga/create-yoga/create-yoga.module').then(
+          import('../pages/yogas/create-yoga/create-yoga.module').then(
             (m) => m.CreateYogaPageModule
           ),
       },

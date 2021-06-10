@@ -12,9 +12,9 @@ export const Menus: AppMenus[] = [
     url: 'progress',
   },
   {
-    name: 'Create',
-    icon: 'duplicate',
-    url: 'create-yoga',
+    name: 'Yoga',
+    icon: 'heart',
+    url: 'yogas',
   },
   {
     name: 'Profile',
