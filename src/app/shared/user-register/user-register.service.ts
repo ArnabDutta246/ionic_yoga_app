@@ -32,7 +32,11 @@ export class UserRegisterService {
       });
   }
   // return check response
-  checkLoginOrReg(res: User[], user: User, login: boolean): loginRegResponse {
+  private checkLoginOrReg(
+    res: User[],
+    user: User,
+    login: boolean
+  ): loginRegResponse {
     let response: loginRegResponse = {
       isExist: true,
       credential: true,

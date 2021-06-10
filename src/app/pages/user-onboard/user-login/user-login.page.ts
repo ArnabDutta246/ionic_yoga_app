@@ -86,18 +86,18 @@ export class UserLoginPage implements OnInit {
   }
 
   // navigate sign up
-  goToSignUp() {
+  public goToSignUp(): void {
     this.router.navigate(['/user-register']);
   }
   //navigate home
-  goToHome() {
+  public goToHome(): void {
     this.router.navigate(['/home/routine']);
   }
   // session check
-  sessionCheck() {
+  public sessionCheck(): void {
     this.session.sessionSetUp().then((res) => this.goToHome());
   }
-  resetForm() {
+  public resetForm(): void {
     this.loginForm.reset();
   }
 }
