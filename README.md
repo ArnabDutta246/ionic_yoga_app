@@ -1,8 +1,9 @@
 ### :coffee: My message 
-> Still working to complete this application and add new features with may helpful for any other applications.
-> If you finds this repository helpful :thumbsup:
-> please give star :star:
-> this support encourage me a lot :muscle: :blush:
+> Still working to complete this application and add new features which may helpful for building any other applications. 
+> If you finds this repository helpful :thumbsup: 
+> please give star :star: 
+> this support encourage me a lot :muscle:  
+> #Stay_safe_keep_coding_:blush:
 
 
 
