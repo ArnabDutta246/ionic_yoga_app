@@ -13,8 +13,8 @@ export class UserRegisterService {
   constructor(private db: DatabaseService, private session: SessionService) {}
 
   // fetch user
-  private fetchUser(): Observable<any> {
-    return this.db.getDataFromHttp(this.db.allUrl.registeredUser);
+  private fetchUser(): Promise<User[]> {
+    return this.db.getAllDocuments<User[]>(this.db.allUrl.registeredUser);
   }
   // check user exist
   public checkTheUserExist(
@@ -22,8 +22,8 @@ export class UserRegisterService {
     login?: boolean
   ): Promise<loginRegResponse> {
     return this.fetchUser()
-      .toPromise()
       .then((res: User[]) => {
+        console.log('all users', res);
         return this.checkLoginOrReg(res, user, login);
       })
       .catch((err) => {
@@ -32,31 +32,28 @@ export class UserRegisterService {
       });
   }
   // return check response
-  async checkLoginOrReg(res: User[], user: User, login: boolean) {
+  checkLoginOrReg(res: User[], user: User, login: boolean): loginRegResponse {
     let response: loginRegResponse = {
       isExist: true,
       credential: true,
     };
 
-    let findMember = (await res.filter(
-      (userFind) => userFind.email == user.email
-    )) as User[];
-
-    console.log('member we get', findMember);
+    let findMember = this.db.getSingleDocument<User>(res, 'email', user.email);
 
     response = {
-      isExist: findMember.length > 0 ? true : false,
+      isExist: typeof findMember !== 'undefined' ? true : false,
       credential: !login
-        ? findMember.length > 0
+        ? typeof findMember !== 'undefined'
           ? true
           : false
-        : findMember.length > 0 && findMember[0].password == user.password
+        : typeof findMember !== 'undefined' &&
+          findMember.password == user.password
         ? true
         : false,
     };
     if (response.isExist && response.credential) {
-      this.session.poke({ user: findMember[0] });
-      setAtStorage('user', findMember[0]);
+      this.session.poke({ user: findMember });
+      setAtStorage('user', findMember);
       this.session.authState.next(true);
     }
     return response;

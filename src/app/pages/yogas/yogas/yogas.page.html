@@ -1,19 +1,64 @@
 <ion-toolbar>
   <ion-row>
-    <ion-col size="7">
+    <ion-col>
       <app-profile-header></app-profile-header>
     </ion-col>
-    <ion-col size="5">
-      <ion-buttons slot="end">
-        <ion-button fill="clear">
-          create <ion-icon slot="icon-only" color="dark" name="add-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+    <ion-col size="4" class="ion-text-right">
+      <ion-button fill="clear" color="primary">
+        create <ion-icon slot="end" color="primary" name="add-outline"></ion-icon>
+      </ion-button>
     </ion-col>
   </ion-row>
 </ion-toolbar>
-
-
 <ion-content>
 
+
+  <!--  Segment -->
+  <div class="ion-padding">
+    <ion-segment [value]="currActiveListName" (ionChange)="segmentChanged($event)" mode="ios" color="secondary">
+      <ion-segment-button value="created">
+        <ion-label>Created</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="default">
+        <ion-label>Default</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="favourite">
+        <ion-label>Favourite</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <ion-list>
+    <ion-list-header>
+      {{currActiveListData.length}} {{ currActiveListName | titlecase}} yogas
+    </ion-list-header>
+
+    <ion-item-sliding *ngFor="let yoga of currActiveListData;let i=index">
+      <ion-item lines="full" [color]="i%2==0?'':'light'">
+        <ion-avatar slot="start">
+          <img [src]="yoga?.imageUrl">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{yoga?.name}}</h2>
+          <p>{{yoga?.description?.pose}}</p>
+          <ion-text color="medium">
+            <p>{{yoga?.minutes }} min | {{ yoga?.recomandedTime}}</p>
+          </ion-text>
+        </ion-label>
+        <ion-button fill="clear" disabled color="medium">
+          <small>swipe</small>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="delete(yoga)" *ngIf="currActiveListName !== 'default'">
+          Delete
+        </ion-item-option>
+        <ion-item-option color="success" (click)="edit(item)" (click)="edit(yoga)"
+          *ngIf="currActiveListName !== 'default'">
+          Update
+        </ion-item-option>
+        <ion-item-option color="light" (click)="details(yoga)">Details</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
