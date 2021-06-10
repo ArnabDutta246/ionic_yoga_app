@@ -1,7 +1,15 @@
-# ionic_yoga_app :lotus_position_man:
-Building yoga daily practice a basic application using ionic 5 capacitor. Try to stabling MVC pattern and clean code with interactive UI with Ionic 5 basic UI components 
+### :coffee: My message 
+> Still working to complete this application and add new features with may helpful for any other applications.
+> If you finds this repository helpful :thumbsup:
+> please give star :star:
+> this support encourage me a lot :muscle: :blush:
 
-## Features Now Added
+
+
+# :lotus_position_man: Daily Yoga App 
+Building yoga daily practice a basic application using ionic 5 capacitor where you can keep routine, tracking progress and new on your yoga schedule :lotus_position_man: in your application. Try to implement MVC pattern and clean code with interactive UI with Ionic 5 basic UI components 
+
+## :clipboard: Features Now Added 
 here I added all the completed component, services or features
 
 - [x] Custom alert design with callback functionality 
@@ -9,8 +17,4 @@ here I added all the completed component, services or features
 - [x] Sign in page with validation
 - [x] Auth guard and session service intregated
 
-## My message :coffee:
-> Still working to complete this application and add new features with may helpful for any other applications.
-> If you finds this repository helpful :thumbsup:
-> please give star :star:
-> this support encourage me a lot :muscle: :blush:
+
