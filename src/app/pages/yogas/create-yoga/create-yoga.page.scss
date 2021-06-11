@@ -1,0 +1,21 @@
+// /* Transparent standard */
+// ion-toolbar {
+//   --background: transparent;
+//   --ion-color-base: transparent !important;
+// }
+
+// /* Show background if class is active */
+// .show-background {
+//   border-style: none;
+//   background: var(--ion-color-primary);
+// }
+
+// /* Remove bottom border on md */
+// .header-md::after {
+//   background-image: none;
+// }
+
+// /* Remove bottom border on ios */
+// .header-ios ion-toolbar:last-child {
+//   --border-width: 0;
+// }

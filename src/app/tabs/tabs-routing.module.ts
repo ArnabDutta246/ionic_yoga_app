@@ -31,13 +31,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'create-yoga',
-        loadChildren: () =>
-          import('../pages/yogas/create-yoga/create-yoga.module').then(
-            (m) => m.CreateYogaPageModule
-          ),
-      },
-      {
         path: 'profile',
         loadChildren: () =>
           import('../pages/profile/profile/profile.module').then(

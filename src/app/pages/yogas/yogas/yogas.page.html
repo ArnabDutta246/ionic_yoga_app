@@ -4,7 +4,7 @@
       <app-profile-header></app-profile-header>
     </ion-col>
     <ion-col size="4" class="ion-text-right">
-      <ion-button fill="clear" color="primary">
+      <ion-button fill="clear" color="primary" (click)="goToCreateYoga()">
         create <ion-icon slot="end" color="primary" name="add-outline"></ion-icon>
       </ion-button>
     </ion-col>
@@ -39,7 +39,7 @@
         </ion-avatar>
         <ion-label>
           <h2>{{yoga?.name}}</h2>
-          <p>{{yoga?.description?.pose}}</p>
+          <p>{{yoga?.pose}}</p>
           <ion-text color="medium">
             <p>{{yoga?.minutes }} min | {{ yoga?.recomandedTime}}</p>
           </ion-text>

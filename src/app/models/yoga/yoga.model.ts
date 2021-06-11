@@ -3,11 +3,9 @@ export interface Yoga {
   name: string;
   imageUrl?: string;
   videoUrl?: string;
-  description: {
-    details: string;
-    pose?: string;
-    benifit?: string;
-  };
+  details: string;
+  pose?: string;
+  benifit?: string;
   minutes: number;
   repeatation: number;
   recomandedTime: string;

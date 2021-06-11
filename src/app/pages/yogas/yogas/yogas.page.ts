@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Yoga } from 'src/app/models/yoga/yoga.model';
 import { YogasService } from 'src/app/shared/yogas/yogas.service';
 
@@ -8,12 +9,14 @@ import { YogasService } from 'src/app/shared/yogas/yogas.service';
   styleUrls: ['./yogas.page.scss'],
 })
 export class YogasPage implements OnInit {
+  // variables
   currActiveListName: string = 'created';
   currActiveListData: Yoga[] = [];
-  constructor(private yogaService: YogasService) {}
-
+  // constructor
+  constructor(private yogaService: YogasService, private router: Router) {}
+  // init
   ngOnInit() {}
-
+  // toggle segment
   public segmentChanged(e?): void {
     console.log(e);
     let value = e.detail.value;
@@ -45,5 +48,9 @@ export class YogasPage implements OnInit {
         console.log(err);
         this.yogaService.errHandler(err);
       });
+  }
+  // go to create yoga
+  goToCreateYoga() {
+    this.router.navigate(['/home/yogas/create-yoga']);
   }
 }

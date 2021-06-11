@@ -7,7 +7,13 @@ const routes: Routes = [
   {
     path: '',
     component: YogasPage,
-    children: [],
+  },
+  {
+    path: 'create-yoga',
+    loadChildren: () =>
+      import('../create-yoga/create-yoga.module').then(
+        (m) => m.CreateYogaPageModule
+      ),
   },
 ];
 
