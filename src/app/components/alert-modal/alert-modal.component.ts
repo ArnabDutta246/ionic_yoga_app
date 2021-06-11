@@ -10,24 +10,20 @@ import { AlertMessage } from 'src/app/models/alert/alert.model';
 export class AlertModalComponent implements OnInit, OnChanges {
   alertMessage: any;
   constructor(
-    private modelController: ModalController,
+    private modalController: ModalController,
     public navParams: NavParams
   ) {}
 
   ngOnInit() {
     this.alertMessage = this.navParams.data as AlertMessage;
-    // console.log(this.navParams.data);
-    // console.log(this.navParams.get('alertMessage'));
-    console.log('oninit', this.alertMessage);
   }
   ngOnChanges() {
     this.alertMessage = this.navParams.data as AlertMessage;
-    console.log('onchanges', this.alertMessage);
   }
 
   dismiss(response: boolean) {
     console.log('alert response', response);
-    this.modelController.dismiss({
+    this.modalController.dismiss({
       responseback: response,
     });
   }

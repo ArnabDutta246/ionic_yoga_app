@@ -34,7 +34,7 @@ export class CreateYogaPage implements OnInit, OnDestroy {
       imageUrl: ['', Validators.required],
       createAt: [Date, Validators.required],
       updatedAt: [Date, Validators.required],
-      isFavourite: [Boolean, Validators.required],
+      isFavourite: [false, Validators.required],
     });
   }
   // get reactive form error

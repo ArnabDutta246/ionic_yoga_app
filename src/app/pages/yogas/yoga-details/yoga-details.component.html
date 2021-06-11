@@ -1,3 +1,104 @@
-<p>
-  yoga-details works!
-</p>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button fill="clear" (click)="dismiss()">
+      <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-button fill="clear" (click)="putInFavourite()" [color]="yoga.isFavourite?'danger':''">
+      <ion-icon slot="icon-only" [name]="yoga.isFavourite?'heart':'heart-outline'"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content *ngIf="yoga != null" class="ion-padding">
+  <img [src]="yoga?.imageUrl" alt="yoga_image" srcset="">
+  <ion-list>
+    <!-- name -->
+    <ion-toolbar color="primary">
+      <ion-row>
+        <ion-col size="12" class="ion-padding">
+          <h3>{{yoga.name}}</h3>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+    <!-- deatils -->
+    <ion-toolbar>
+      <ion-row>
+        <ion-col size="12" class="ion-padding-left">
+          <ion-text color="medium">
+            <small>Details</small>
+          </ion-text>
+        </ion-col>
+        <ion-col size="12" class="ion-padding">
+          <small>{{yoga?.details}}</small>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+    <!-- pose -->
+    <ion-toolbar color="light">
+      <ion-row>
+        <ion-col size="12" class="ion-padding-left">
+          <ion-text color="medium">
+            <small>Pose</small>
+          </ion-text>
+        </ion-col>
+        <ion-col size="12" class="ion-padding">
+          <small>{{yoga?.pose}}</small>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+    <!-- duration -->
+    <ion-toolbar>
+      <ion-row>
+        <ion-col size="9" class="ion-padding-left">
+          <ion-text color="medium">
+            <small>Duration</small>
+          </ion-text>
+        </ion-col>
+        <ion-col size="3" class="ion-padding-right ion-text-right">
+          <small>{{yoga?.minutes|date:'mm:ss'}} min</small>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+    <!-- repeatation -->
+    <ion-toolbar>
+      <ion-row>
+        <ion-col size="9" class="ion-padding-left">
+          <ion-text color="medium">
+            <small>Repeatation</small>
+          </ion-text>
+        </ion-col>
+        <ion-col size="3" class="ion-padding-right ion-text-right">
+          <small>{{yoga?.repeatation}} round</small>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+    <!-- recomanded time -->
+    <ion-toolbar>
+      <ion-row>
+        <ion-col size="7" class="ion-padding-left">
+          <ion-text color="medium">
+            <small>Recommanded time</small>
+          </ion-text>
+        </ion-col>
+        <ion-col size="5" class="ion-padding-right ion-text-right">
+          <small>{{yoga?.recomandedTime}}</small>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+    <!-- benifit -->
+    <ion-toolbar color="light">
+      <ion-row>
+        <ion-col size="12" class="ion-padding-left">
+          <ion-text color="medium">
+            <small>Health benifit</small>
+          </ion-text>
+        </ion-col>
+        <ion-col size="12" class="ion-padding">
+          <small>{{yoga?.benifit}}</small>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+  </ion-list>
+</ion-content>
