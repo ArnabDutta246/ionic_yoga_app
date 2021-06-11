@@ -19,7 +19,7 @@ export class CommonComponentService {
     public alertController: AlertController,
     public loadingController: LoadingController,
     public toastController: ToastController,
-    public modelController: ModalController //public routerOutlet: IonRouterOutlet
+    public modalController: ModalController //public routerOutlet: IonRouterOutlet
   ) {}
 
   // async presentAlert(header, message, buttons?: any) {
@@ -182,7 +182,7 @@ export class CommonComponentService {
   }
 
   async presentModalAlert(alertMessage: AlertMessage, clb?: any) {
-    const modal = await this.modelController.create({
+    const modal = await this.modalController.create({
       component: AlertModalComponent,
       componentProps: alertMessage,
       cssClass: 'alert-modal-class',
@@ -190,7 +190,7 @@ export class CommonComponentService {
       swipeToClose: true,
       backdropDismiss: false,
       // presentingElement: this.routerOutlet.nativeEl,
-      presentingElement: await this.modelController.getTop(),
+      presentingElement: await this.modalController.getTop(),
     });
 
     modal.onDidDismiss().then((data: any) => {

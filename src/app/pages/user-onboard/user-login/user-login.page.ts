@@ -95,7 +95,7 @@ export class UserLoginPage implements OnInit {
   }
   // session check
   public sessionCheck(): void {
-    this.session.sessionSetUp().then((res) => this.goToHome());
+    this.session.initSession().then((res) => this.goToHome());
   }
   public resetForm(): void {
     this.loginForm.reset();

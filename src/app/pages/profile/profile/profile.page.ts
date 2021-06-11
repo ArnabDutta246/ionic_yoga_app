@@ -20,7 +20,7 @@ export class ProfilePage implements OnInit {
     this.sessionData = this.session.peek();
     console.log(this.sessionData);
   }
-  private sessionSignOut() {
+  public sessionSignOut() {
     this.session.clear();
   }
 }

@@ -1,38 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { calculateErrors } from 'src/app/form-validators/validators';
+import { Session } from 'src/app/models/session/session.model';
 import { CommonComponentService } from 'src/app/shared/common-component/common-component.service';
+import { SessionService } from 'src/app/shared/session/session.service';
+import { YogasService } from 'src/app/shared/yogas/yogas.service';
 
 @Component({
   selector: 'app-create-yoga',
   templateUrl: './create-yoga.page.html',
   styleUrls: ['./create-yoga.page.scss'],
 })
-export class CreateYogaPage implements OnInit {
+export class CreateYogaPage implements OnInit, OnDestroy {
+  session$;
+  sessionData: Session;
   createYoga: FormGroup;
-  constructor(private fb: FormBuilder, private common: CommonComponentService) {
+  constructor(
+    private fb: FormBuilder,
+    private common: CommonComponentService,
+    private session: SessionService,
+    private yogaService: YogasService
+  ) {
     this.createYoga = this.fb.group({
+      id: [''],
       name: ['', Validators.required],
-
       details: ['', Validators.required],
       pose: ['', Validators.required],
       benifit: ['', Validators.required],
-
       minutes: [0, Validators.required],
       repeatation: [0, Validators.required],
       recomandedTime: ['', Validators.required],
       imageUrl: ['', Validators.required],
+      createAt: [Date, Validators.required],
+      updatedAt: [Date, Validators.required],
+      isFavourite: [Boolean, Validators.required],
     });
   }
   // get reactive form error
   get f() {
     return this.createYoga.controls;
   }
-  get nested() {
-    return this.createYoga.controls.child;
-  }
   // oninit
-  ngOnInit() {}
+  ngOnInit() {
+    this.setNewYogaId();
+  }
+  //ondestry
+  ngOnDestroy() {
+    this.session.watch().unsubscribe();
+  }
+  // get session data
+  private getSessionData(): void {
+    this.session.watch().subscribe((res) => {
+      this.sessionData = res;
+    });
+  }
+  ionViewDidEnter() {
+    this.getSessionData();
+  }
+  // some init value
+  public setNewYogaId(): void {
+    let date = new Date();
+    this.createYoga.patchValue({
+      id: 'yoga_' + date.getMilliseconds(),
+      createAt: [new Date()],
+      updatedAt: [new Date()],
+      isFavourite: [false],
+    });
+  }
+
   // submit
   public submit(): void {
     console.log(this.createYoga.value);
@@ -40,11 +76,32 @@ export class CreateYogaPage implements OnInit {
     if (this.createYoga.invalid) {
       let error = calculateErrors(this.createYoga);
       this.common.errorAlert(error, 'danger');
+    } else {
+      this.yogaService
+        .createYoga(this.sessionData, this.createYoga.value)
+        .then((res) => {
+          res ? this.successMsg() : this.errorHandler;
+        });
     }
   }
 
-  //reset form
+  // reset form
   public resetForm(): void {
     this.createYoga.reset;
+  }
+
+  // creste successfull
+  successMsg() {
+    this.common.sucessAlert(
+      'This yoga create successfully. You can update and delete it later.'
+    );
+    this.resetForm();
+  }
+  // err handler
+  errorHandler() {
+    this.common.errorAlert(
+      ['Please Check and try again. Something went wrong'],
+      'danger'
+    );
   }
 }
