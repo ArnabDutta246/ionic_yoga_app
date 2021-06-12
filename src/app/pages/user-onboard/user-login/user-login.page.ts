@@ -73,7 +73,7 @@ export class UserLoginPage implements OnInit {
             ]);
           } else {
             this.resetForm();
-            this.common.waringAlert(
+            this.common.warningAlert(
               [
                 'This user is not registered yet.Please visit sign up page. Do you want to create new account?',
               ],
