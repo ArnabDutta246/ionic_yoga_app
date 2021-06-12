@@ -22,83 +22,6 @@ export class CommonComponentService {
     public modalController: ModalController //public routerOutlet: IonRouterOutlet
   ) {}
 
-  // async presentAlert(header, message, buttons?: any) {
-  //   const defaultDuttons: any = {
-  //     Success: [
-  //       {
-  //         text: 'Ok',
-  //         role: 'ok',
-  //         cssClass: 'ok-button',
-  //         handler: () => {
-  //           console.log('Confirm Ok');
-  //         },
-  //       },
-  //     ],
-  //     Error: [
-  //       {
-  //         text: 'Dismiss',
-  //         role: 'error',
-  //         cssClass: 'error-button',
-  //         handler: () => {
-  //           console.log('Confirm Ok');
-  //         },
-  //       },
-  //     ],
-  //   };
-
-  //   const alert = this.alertController.create({
-  //     cssClass: 'my-custom-class',
-  //     header,
-  //     // subHeader: subtitle,
-  //     message,
-  //     buttons: buttons ? buttons : defaultDuttons[header],
-  //   });
-
-  //   (await alert).present();
-  // }
-  // presentAlertConfirm(header, message, buttons?: any) {
-  //   return new Promise(async (resolve) => {
-  //     // process buttons
-  //     let newButtons = [];
-  //     if (buttons) {
-  //       newButtons = buttons.map((b) => {
-  //         return {
-  //           text: b.text,
-  //           role: b.role,
-  //           cssClass: '',
-  //           handler: () => {
-  //             b.handler();
-  //             resolve(b.resolve);
-  //           },
-  //         };
-  //       });
-  //     }
-  //     const alert = await this.alertController.create({
-  //       header,
-  //       message,
-  //       buttons: buttons
-  //         ? newButtons
-  //         : [
-  //             {
-  //               text: 'Dismiss',
-  //               role: 'cancel',
-  //               cssClass: 'secondary',
-  //               handler: () => {
-  //                 resolve(false);
-  //               },
-  //             },
-  //             {
-  //               text: 'Ok',
-  //               handler: () => {
-  //                 resolve(true);
-  //               },
-  //             },
-  //           ],
-  //     });
-  //     alert.present();
-  //   });
-  // }
-
   // ========[ loader ]========
   async showLoader(message: string = 'Please wait!', duration: number = 0) {
     // console.log("this.loader requested for ", message);
@@ -153,7 +76,7 @@ export class CommonComponentService {
     let successMsg = [message];
     return this.setAlertMessage(successMsg, mood, clb);
   }
-  waringAlert(errors: string[], mood = 'waring', clb?) {
+  warningAlert(errors: string[], mood = 'waring', clb?) {
     return this.setAlertMessage(errors, mood, clb);
   }
   normalAlert(message: string, mood = 'normal', clb?) {

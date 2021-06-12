@@ -84,7 +84,7 @@ export class UserRegisterPage implements OnInit {
   submit() {
     if (this.roomRegisterForm.invalid) {
       let error = calculateErrors(this.roomRegisterForm);
-      this.common.errorAlert(error, 'danger', this.callbackRes.bind(this));
+      this.common.errorAlert(error, 'danger');
     } else {
       let user: User = this.roomRegisterForm.value;
       console.log('get user data', user);
@@ -93,7 +93,7 @@ export class UserRegisterPage implements OnInit {
         .then((res: loginRegResponse) => {
           if (res.isExist) {
             this.resetForm();
-            this.common.waringAlert(
+            this.common.warningAlert(
               [
                 'The account already registered before.Please visit login page for sign in process',
               ],
@@ -117,10 +117,6 @@ export class UserRegisterPage implements OnInit {
 
   resetForm() {
     this.roomRegisterForm.reset();
-  }
-  callbackRes(res) {
-    console.log(res);
-    console.log(res.data.backData);
   }
   goToSignIn() {
     this.router.navigate(['/user-login']);

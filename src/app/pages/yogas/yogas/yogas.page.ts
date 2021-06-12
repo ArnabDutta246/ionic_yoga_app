@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { Session } from 'src/app/models/session/session.model';
 
 import { Yoga } from 'src/app/models/yoga/yoga.model';
+import { CommonComponentService } from 'src/app/shared/common-component/common-component.service';
 import { SessionService } from 'src/app/shared/session/session.service';
 import { YogasService } from 'src/app/shared/yogas/yogas.service';
 import { YogaDetailsComponent } from '../yoga-details/yoga-details.component';
@@ -24,26 +25,27 @@ export class YogasPage implements OnInit, OnDestroy {
     private yogaService: YogasService,
     private router: Router,
     private session: SessionService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private common: CommonComponentService
   ) {}
   // init
   ngOnInit() {}
 
   // on destroy
   ngOnDestroy() {
-    this.session.watch().unsubscribe();
+    //this.session.watch().unsubscribe();
   }
 
   // get session data
   private getSessionData(): void {
     this.session.watch().subscribe((res) => {
       this.sessionData = res;
+      this.segmentChanged();
     });
   }
 
   ionViewDidEnter() {
     this.getSessionData();
-    this.segmentChanged();
   }
 
   // toggle segment
@@ -107,5 +109,31 @@ export class YogasPage implements OnInit, OnDestroy {
     this.router.navigate(['home/yogas/update-yoga'], {
       state: { data: { yoga: yoga } },
     });
+  }
+  // delete action
+  public deleteAction(yoga: Yoga): void {
+    this.yogaService
+      .deleteYoga(yoga.id)
+      .then((res) => (res ? this.successMsg() : this.errorHandler()));
+  }
+
+  // deleted successfull
+  private successMsg(): void {
+    this.common.sucessAlert('This yoga deleted successfully');
+  }
+  // delete yoga
+  private deleteYoga(yoga: Yoga): void {
+    this.common.warningAlert(
+      ['Are you sure? you want to delete this yoga form list?'],
+      'warning',
+      this.deleteAction.bind(this, yoga)
+    );
+  }
+  // err handler
+  private errorHandler(): void {
+    this.common.errorAlert(
+      ['Please Check and try again. Something went wrong'],
+      'danger'
+    );
   }
 }

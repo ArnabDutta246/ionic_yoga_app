@@ -2,9 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { calculateErrors } from 'src/app/form-validators/validators';
-import { Session } from 'src/app/models/session/session.model';
 import { CommonComponentService } from 'src/app/shared/common-component/common-component.service';
-import { SessionService } from 'src/app/shared/session/session.service';
+
 import { YogasService } from 'src/app/shared/yogas/yogas.service';
 
 @Component({
@@ -17,7 +16,6 @@ export class CreateYogaPage implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private common: CommonComponentService,
-    private session: SessionService,
     private yogaService: YogasService
   ) {
     this.createYoga = this.fb.group({
@@ -43,10 +41,8 @@ export class CreateYogaPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.setNewYogaId();
   }
-  //ondestry
-  ngOnDestroy() {
-    this.session.watch().unsubscribe();
-  }
+  //on destry
+  ngOnDestroy() {}
 
   // some init value
   public setNewYogaId(): void {
@@ -66,14 +62,14 @@ export class CreateYogaPage implements OnInit, OnDestroy {
       this.common.errorAlert(error, 'danger');
     } else {
       this.yogaService.createYoga(this.createYoga.value).then((res) => {
-        res ? this.successMsg() : this.errorHandler;
+        res ? this.successMsg() : this.errorHandler();
       });
     }
   }
 
   // reset form
   public resetForm(): void {
-    this.createYoga.reset;
+    this.createYoga.reset();
   }
 
   // creste successfull

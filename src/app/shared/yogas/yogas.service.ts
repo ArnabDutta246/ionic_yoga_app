@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Session } from 'src/app/models/session/session.model';
 import { Yoga } from 'src/app/models/yoga/yoga.model';
-import { getFromStorage, setAtStorage } from '../app-storage/app-storage';
 import { CommonComponentService } from '../common-component/common-component.service';
 import { DatabaseService } from '../database/database.service';
 import { SessionService } from '../session/session.service';
@@ -67,7 +66,11 @@ export class YogasService {
   // delete
   public deleteYoga(yogaId: string): Promise<boolean> {
     let sessionData = this.session.peek() as Session;
-    return;
+    sessionData.yogas = sessionData.yogas.filter(
+      (yoga: Yoga) => yoga.id !== yogaId
+    );
+    if (sessionData.yogas.length == 0) sessionData.yogas = null;
+    return this.session.mergeSessionData(sessionData, 'yogas');
   }
 
   // mark as favourite

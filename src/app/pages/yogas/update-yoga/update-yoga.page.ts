@@ -99,7 +99,7 @@ export class UpdateYogaPage implements OnInit, OnDestroy {
       this.common.errorAlert(error, 'danger');
     } else {
       this.yogaService.updateYoga(this.updateYoga.value).then((res) => {
-        res ? this.successMsg() : this.errorHandler;
+        res ? this.successMsg() : this.errorHandler();
       });
     }
   }
