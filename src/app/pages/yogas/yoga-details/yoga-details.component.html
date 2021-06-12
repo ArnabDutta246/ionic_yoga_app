@@ -4,6 +4,7 @@
       <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
     </ion-button>
   </ion-buttons>
+  <ion-title>Details</ion-title>
   <ion-buttons slot="end" *ngIf="yoga != null">
     <ion-button fill="clear" (click)="putInFavourite()" [color]="yoga.isFavourite?'danger':''">
       <ion-icon slot="icon-only" [name]="yoga.isFavourite?'heart':'heart-outline'"></ion-icon>
