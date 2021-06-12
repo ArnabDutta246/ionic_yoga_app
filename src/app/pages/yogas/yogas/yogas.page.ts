@@ -29,6 +29,7 @@ export class YogasPage implements OnInit, OnDestroy {
   // init
   ngOnInit() {}
 
+  // on destroy
   ngOnDestroy() {
     this.session.watch().unsubscribe();
   }

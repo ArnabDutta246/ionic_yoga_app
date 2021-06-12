@@ -13,8 +13,6 @@ import { YogasService } from 'src/app/shared/yogas/yogas.service';
   styleUrls: ['./create-yoga.page.scss'],
 })
 export class CreateYogaPage implements OnInit, OnDestroy {
-  session$;
-  sessionData: Session;
   createYoga: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -49,15 +47,7 @@ export class CreateYogaPage implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.session.watch().unsubscribe();
   }
-  // get session data
-  private getSessionData(): void {
-    this.session.watch().subscribe((res) => {
-      this.sessionData = res;
-    });
-  }
-  ionViewDidEnter() {
-    this.getSessionData();
-  }
+
   // some init value
   public setNewYogaId(): void {
     let date = new Date();
@@ -77,11 +67,9 @@ export class CreateYogaPage implements OnInit, OnDestroy {
       let error = calculateErrors(this.createYoga);
       this.common.errorAlert(error, 'danger');
     } else {
-      this.yogaService
-        .createYoga(this.sessionData, this.createYoga.value)
-        .then((res) => {
-          res ? this.successMsg() : this.errorHandler;
-        });
+      this.yogaService.createYoga(this.createYoga.value).then((res) => {
+        res ? this.successMsg() : this.errorHandler;
+      });
     }
   }
 

@@ -19,29 +19,13 @@ export class YogasService {
     private common: CommonComponentService,
     private session: SessionService
   ) {}
-
-  // get all default yoga
-  public fetchAllYogas(): Promise<Yoga[]> {
-    return getFromStorage('yogas')
-      .then((res) => {
-        if (res == null) {
-          return [];
-        } else {
-          this.allYogas.next(res);
-          return res;
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        this.errHandler(err);
-      });
+  // get sessionData
+  getSessionData() {
+    return this.session.peek();
   }
-
   // get single yoga
-  public fetchSingleYoga(id: string): Promise<Yoga> {
-    return this.fetchAllYogas().then((res: Yoga[]) =>
-      this.db.getSingleDocument(res, 'id', id)
-    );
+  public fetchSingleYoga(list: Yoga[], yoga: Yoga): Yoga {
+    return this.db.getSingleDocument<Yoga>(list, 'id', yoga.id);
   }
 
   // get default yogas
@@ -50,7 +34,8 @@ export class YogasService {
   }
 
   // create yogas
-  public createYoga(sessionData: Session, newYogaData: Yoga): Promise<boolean> {
+  public createYoga(newYogaData: Yoga): Promise<boolean> {
+    let sessionData: Session = this.getSessionData();
     if (sessionData.yogas == null) {
       sessionData.yogas = [newYogaData];
     } else {
@@ -66,6 +51,17 @@ export class YogasService {
     let sessionData = this.session.peek() as Session;
     return;
   }
+
+  // mark as favourite
+  markFavourite(yoga: Yoga): void {
+    let sessionData: Session = this.getSessionData();
+    if (sessionData.yogas !== null) {
+      let findYoga: Yoga = this.fetchSingleYoga(sessionData.yogas, yoga);
+      findYoga.isFavourite = !findYoga.isFavourite;
+      this.session.mergeSessionData(sessionData, 'yogas');
+    }
+  }
+
   // err handler
   public errHandler(err) {
     this.common.errorAlert([err], 'danger');
