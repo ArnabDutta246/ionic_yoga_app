@@ -20,7 +20,21 @@ here I added all the completed component, services or features
 - [x] Auth guard and session service intregated
 - [x] Create, Read, Update and Delete functionlity added on Yoga
 
+<br/>
 
+## User signin and signup 
+Using ionic reactive form module with custome validation function implemented in user sign-in and sign-up form. Also intregated router guard and common session service to grab all current changes or update will be effected in any other modules or pages
+
+Sign-In Page | Sign-Up Page | Custom alert |    Profile   |
+------------ | ------------ | ------------ | ------------ |
+<img align="center" alt="Sign-In Page" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/sign-in.JPG" />|<img align="center" alt="Sign-Up Page" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/sign-up.JPG" />|<img align="center" alt="Validation" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/validation.JPG" />|<img align="center" alt="Profile" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/profile.JPG" />
+
+## CRUD actions of yoga
+Yoga list Create (using reactive form),update , delete and imediate response update in session and storage these actions are handled is module.State management system (with MVC) pattern implemented by using RXJs observables, Behaviour Subject.
+
+ Create Yoga | List of Yoga | Yoga Details |   CRUD Yoga  |
+------------ | ------------ | ------------ | ------------ |
+<img align="center" alt="Create Yoga" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/yoga-create.JPG" />|<img align="center" alt="List yoga" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/yoga-list.JPG" />|<img align="center" alt="Details" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/yoga-details.JPG" />|<img align="center" alt="Crud action" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/CRUD-actions.JPG" />
 
 
 
