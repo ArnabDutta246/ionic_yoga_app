@@ -54,8 +54,7 @@
           <ion-item-option color="danger" (click)="delete(yoga)" *ngIf="currActiveListName !== 'default'">
             Delete
           </ion-item-option>
-          <ion-item-option color="success" (click)="edit(item)" (click)="edit(yoga)"
-            *ngIf="currActiveListName !== 'default'">
+          <ion-item-option color="success" (click)="updateYoga(yoga)" *ngIf="currActiveListName !== 'default'">
             Update
           </ion-item-option>
           <ion-item-option color="light" (click)="yogaDetailsModal(yoga)">Details</ion-item-option>

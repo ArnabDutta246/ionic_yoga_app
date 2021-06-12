@@ -15,6 +15,13 @@ const routes: Routes = [
         (m) => m.CreateYogaPageModule
       ),
   },
+  {
+    path: 'update-yoga',
+    loadChildren: () =>
+      import('../update-yoga/update-yoga.module').then(
+        (m) => m.UpdateYogaPageModule
+      ),
+  },
 ];
 
 @NgModule({

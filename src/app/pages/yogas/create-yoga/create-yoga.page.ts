@@ -30,7 +30,7 @@ export class CreateYogaPage implements OnInit, OnDestroy {
       repeatation: [0, Validators.required],
       recomandedTime: ['', Validators.required],
       imageUrl: ['', Validators.required],
-      createAt: [Date, Validators.required],
+      createdAt: [Date, Validators.required],
       updatedAt: [Date, Validators.required],
       isFavourite: [false, Validators.required],
     });
@@ -53,16 +53,14 @@ export class CreateYogaPage implements OnInit, OnDestroy {
     let date = new Date();
     this.createYoga.patchValue({
       id: 'yoga_' + date.getMilliseconds(),
-      createAt: [new Date()],
-      updatedAt: [new Date()],
-      isFavourite: [false],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      isFavourite: false,
     });
   }
 
   // submit
   public submit(): void {
-    console.log(this.createYoga.value);
-    console.log(this.createYoga.valid);
     if (this.createYoga.invalid) {
       let error = calculateErrors(this.createYoga);
       this.common.errorAlert(error, 'danger');

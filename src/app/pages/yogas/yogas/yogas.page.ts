@@ -83,7 +83,7 @@ export class YogasPage implements OnInit, OnDestroy {
       });
   }
   // go to create yoga
-  goToCreateYoga(): void {
+  public goToCreateYoga(): void {
     this.router.navigate(['/home/yogas/create-yoga']);
   }
 
@@ -100,5 +100,12 @@ export class YogasPage implements OnInit, OnDestroy {
       presentingElement: await this.modalController.getTop(),
     });
     return await modal.present();
+  }
+
+  // go to edit page
+  public updateYoga(yoga: Yoga): void {
+    this.router.navigate(['home/yogas/update-yoga'], {
+      state: { data: { yoga: yoga } },
+    });
   }
 }

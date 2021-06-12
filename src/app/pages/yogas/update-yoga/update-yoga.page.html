@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>update yoga</ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot="end" fill="outline" color="success" type="submit" (click)="submit()">
+        update
+      </ion-button>
+      <ion-button slot="end" fill="solid" color="danger" (click)="cancelForm()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content fullscreen="true">
+  <form [formGroup]="updateYoga" (ngSubmit)="submit()">
+    <ion-list class="ion-padding">
+      <!-- name -->
+      <ion-item color="light" class=" ion-margin-bottom">
+        <ion-label position="floating">
+          <ion-icon name="flower-outline"></ion-icon>
+          Enter yoga name
+        </ion-label>
+        <ion-input type="text" required formControlName="name"></ion-input>
+      </ion-item>
+
+      <!-- pose -->
+      <ion-item color="light" class="ion-margin-top ion-margin-bottom">
+        <ion-label position="floating">
+          <ion-icon name="body-outline"></ion-icon>
+          Yoga Pose (short describe)
+        </ion-label>
+        <ion-textarea autoGrow="true" wrap="soft" type="text" required formControlName="pose"></ion-textarea>
+      </ion-item>
+      <!-- process -->
+      <ion-item color="light" class="ion-margin-top ion-margin-bottom">
+        <ion-label position="floating">
+          <ion-icon name="clipboard-outline"></ion-icon>
+          Full procedure
+        </ion-label>
+        <ion-textarea autoGrow="true" wrap="soft" type="text" formControlName="details">
+        </ion-textarea>
+      </ion-item>
+      <!-- health benefit -->
+      <ion-item color="light" class="ion-margin-top ion-margin-bottom">
+        <ion-label position="floating">
+          <ion-icon name="clipboard-outline"></ion-icon>
+          Health benefit
+        </ion-label>
+        <ion-textarea autoGrow="true" wrap="soft" type="text" required formControlName="benifit">
+        </ion-textarea>
+      </ion-item>
+
+      <!-- duration -->
+      <ion-item color="light" class="ion-margin-top ion-margin-bottom">
+        <ion-label position="floating">
+          <ion-icon name="hourglass-outline"></ion-icon>
+          Duration In Minute
+        </ion-label>
+        <ion-datetime displayFormat="mm" required formControlName="minutes">
+        </ion-datetime>
+      </ion-item>
+      <!-- repetation -->
+      <ion-item color="light" class="ion-margin-top ion-margin-bottom">
+        <ion-label position="floating">
+          <ion-icon name="repeat-outline"></ion-icon>
+          Repeatation (total set)
+        </ion-label>
+        <ion-input required type="number" formControlName="repeatation">
+        </ion-input>
+      </ion-item>
+      <!-- best time -->
+      <ion-item color="light" class="ion-margin-top ion-margin-bottom">
+        <ion-label position="floating">
+          <ion-icon name="alarm-outline"></ion-icon>
+          Recommanded time
+        </ion-label>
+        <ion-select [value]="value" required formControlName="recomandedTime">
+          <ion-select-option value="morning">Morning</ion-select-option>
+          <ion-select-option value="evening">Evening</ion-select-option>
+          <ion-select-option value="night">Night</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <!-- image -->
+      <ion-item color="light" class="ion-margin-top ion-margin-bottom">
+        <ion-label position="floating">
+          <ion-icon name="images-outline"></ion-icon>
+          Yoga's ref image url
+        </ion-label>
+        <ion-input type="text" required formControlName="imageUrl"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+
+</ion-content>

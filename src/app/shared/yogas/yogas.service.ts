@@ -45,6 +45,24 @@ export class YogasService {
   }
 
   // update
+  public updateYoga(updateYogaData: Yoga): Promise<boolean> {
+    let sessionData: Session = this.getSessionData();
+    let findYoga: Yoga = this.fetchSingleYoga(
+      sessionData.yogas,
+      updateYogaData
+    );
+    this.objectPopulate(findYoga, updateYogaData);
+    return this.session.mergeSessionData(sessionData, 'yogas');
+  }
+
+  // object populated
+  objectPopulate(findYoga: Yoga, updateYogaData: Yoga): Yoga {
+    let keys = Object.keys(updateYogaData);
+    keys.forEach((key) => {
+      findYoga[key] = updateYogaData[key];
+    });
+    return findYoga;
+  }
 
   // delete
   public deleteYoga(yogaId: string): Promise<boolean> {
