@@ -1,17 +1,17 @@
-<ion-item color="light">
+<ion-item color="tertiary">
   <ion-label>
     Choose schedule for
   </ion-label>
 
   <ion-select [value]="setDailyOrWeekly" (ionChange)="setUpYogaRoutine($event)">
-    <ion-select-option value="daily">daily</ion-select-option>
+    <ion-select-option value="daily" checked>daily</ion-select-option>
     <ion-select-option value="weekly">Weekdays</ion-select-option>
   </ion-select>
 </ion-item>
 
 <ion-row *ngIf="week.length>0 && showWeekDays">
   <ion-col color="danger" *ngFor="let day of week;let i=index">
-    <div [ngClass]="i!==currDayIndex?'weekDays':'active'" [id]="'week'+i" (click)="fetchRoutine(i)">
+    <div [ngClass]="i!==currDayIndex?'weekDays':'active'" [id]="'week'+i" (click)="onWeekDayChanges(i)">
       <ion-text>{{ day | titlecase}}</ion-text><br>
     </div>
   </ion-col>

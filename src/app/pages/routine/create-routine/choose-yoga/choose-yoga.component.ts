@@ -18,7 +18,8 @@ export class ChooseYogaComponent implements OnInit, OnChanges {
   // variables
   week = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
   showWeekDays: boolean = false;
-  setDailyOrWeekly: string;
+  setDailyOrWeekly: string = 'daily';
+  currDayIndex: number = 0;
   // constructor
   constructor() {}
 
@@ -39,11 +40,19 @@ export class ChooseYogaComponent implements OnInit, OnChanges {
   }
 
   // toggle daily / weekdays
-  setUpYogaRoutine(e = null) {
+  public setUpYogaRoutine(e = null): void {
     let event = e != null ? e.detail.value : null;
     if (event != null) {
       this.showWeekDays = !this.showWeekDays;
       this.setDailyOrWeekly = event;
     }
   }
+
+  // on weekdays change
+  public onWeekDayChanges(i: number): void {
+    this.currDayIndex = i;
+  }
+
+  // emit
+  public emitThisData(): void {}
 }
