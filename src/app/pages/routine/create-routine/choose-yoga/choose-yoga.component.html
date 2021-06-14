@@ -1,3 +1,27 @@
-<p>
-  choose-yoga works!
-</p>
+<ion-list>
+  <ion-list-header class="ion-no-padding ion-padding-left">
+    <ion-text color="medium">
+      <small>Select yoga</small>
+    </ion-text>
+  </ion-list-header>
+
+
+  <ion-item lines="full" [color]="i%2==0?'':'light'" *ngFor="let yoga of currActiveListData;let i=index">
+    <ion-avatar slot="start">
+      <img [src]="yoga?.imageUrl">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{yoga?.name}}</h2>
+      <p>{{yoga?.pose}}</p>
+      <ion-text color="medium">
+        <p>{{yoga?.minutes|date:'mm:ss' }} min | {{ yoga?.recomandedTime}}</p>
+      </ion-text>
+    </ion-label>
+    <ion-button fill="clear" disabled color="medium">
+      <small>swipe</small>
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+</ion-list>
+</ion-content>
