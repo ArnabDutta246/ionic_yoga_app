@@ -30,4 +30,6 @@ npm-debug.log*
 /plugins
 /www
 /package-lock.json
-/src/environment
+/src/environments
+/src/app/shared/session
+/src/app/shared/yogas
