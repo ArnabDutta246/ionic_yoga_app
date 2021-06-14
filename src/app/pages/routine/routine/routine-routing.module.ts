@@ -6,8 +6,15 @@ import { RoutinePage } from './routine.page';
 const routes: Routes = [
   {
     path: '',
-    component: RoutinePage
-  }
+    component: RoutinePage,
+  },
+  {
+    path: 'create-routine',
+    loadChildren: () =>
+      import('../create-routine/create-routine.module').then(
+        (m) => m.CreateRoutinePageModule
+      ),
+  },
 ];
 
 @NgModule({

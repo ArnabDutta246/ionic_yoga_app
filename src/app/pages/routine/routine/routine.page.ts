@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { Yoga } from 'src/app/models/yoga/yoga.model';
 
 @Component({
   selector: 'app-routine',
@@ -9,6 +10,7 @@ import * as moment from 'moment';
 export class RoutinePage implements OnInit {
   currWeekList: any = [];
   currDayIndex: number = 0;
+  todaysYogaList: Yoga[] | null = null;
   constructor() {}
 
   ngOnInit() {

@@ -20,4 +20,31 @@
       </div>
     </ion-col>
   </ion-row>
+
+  <ion-list>
+    <ion-list-header class="ion-no-padding ion-padding-left">
+      <ion-text color="medium">
+        <small>Todays' your yoga routine</small>
+      </ion-text>
+    </ion-list-header>
+
+    <div *ngIf="todaysYogaList !== null;else emptyTodaysRoutine">
+
+    </div>
+    <ng-template #emptyTodaysRoutine>
+      <div class="ion-text-center ion-padding ion-margin">
+        <ion-text color="medium">
+          <small>
+            You hav't set any yogas for todays practice. You can create a yoga routine with your create/default yoga
+            asanas
+          </small>
+        </ion-text> <br>
+        <ion-button fill="clear">
+          <ion-text color="primary">
+            Get start +
+          </ion-text>
+        </ion-button>
+      </div>
+    </ng-template>
+  </ion-list>
 </ion-content>
