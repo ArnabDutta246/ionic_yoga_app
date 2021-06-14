@@ -1,6 +1,8 @@
+import { Yoga } from '../yoga/yoga.model';
+
 export interface YogaListRef {
-  cretadYogas: [];
-  defaultYogas: [];
+  creatadYogas: Yoga[];
+  defaultYogas: Yoga[];
   routine: Routine;
 }
 export interface Routine {

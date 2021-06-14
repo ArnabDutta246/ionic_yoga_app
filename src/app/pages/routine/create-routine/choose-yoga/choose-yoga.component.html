@@ -1,27 +1,72 @@
+<ion-item color="light">
+  <ion-label>
+    Choose schedule for
+  </ion-label>
+
+  <ion-select [value]="setDailyOrWeekly" (ionChange)="setUpYogaRoutine($event)">
+    <ion-select-option value="daily">daily</ion-select-option>
+    <ion-select-option value="weekly">Weekdays</ion-select-option>
+  </ion-select>
+</ion-item>
+
+<ion-row *ngIf="week.length>0 && showWeekDays">
+  <ion-col color="danger" *ngFor="let day of week;let i=index">
+    <div [ngClass]="i!==currDayIndex?'weekDays':'active'" [id]="'week'+i" (click)="fetchRoutine(i)">
+      <ion-text>{{ day | titlecase}}</ion-text><br>
+    </div>
+  </ion-col>
+</ion-row>
+
 <ion-list>
-  <ion-list-header class="ion-no-padding ion-padding-left">
+  <ion-list-header class="ion-padding">
     <ion-text color="medium">
-      <small>Select yoga</small>
+      <small>Select yoga </small>
     </ion-text>
   </ion-list-header>
 
-
-  <ion-item lines="full" [color]="i%2==0?'':'light'" *ngFor="let yoga of currActiveListData;let i=index">
-    <ion-avatar slot="start">
-      <img [src]="yoga?.imageUrl">
-    </ion-avatar>
-    <ion-label>
-      <h2>{{yoga?.name}}</h2>
-      <p>{{yoga?.pose}}</p>
+  <ion-item-divider>
+    Created yogas
+  </ion-item-divider>
+  <div *ngIf="passRefObject && passRefObject.creatadYogas;else emptyList">
+    <ion-item lines="full" [color]="i%2==0?'':'light'" *ngFor="let yoga of passRefObject.creatadYogas;let i=index">
+      <ion-avatar slot="start">
+        <img [src]="yoga?.imageUrl">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{yoga?.name}}</h2>
+        <p>{{yoga?.pose}}</p>
+        <ion-text color="medium">
+          <p>{{yoga?.minutes|date:'mm:ss' }} min | {{ yoga?.recomandedTime}}</p>
+        </ion-text>
+      </ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+  </div>
+  <ion-item-divider>
+    Default yogas
+  </ion-item-divider>
+  <div *ngIf="passRefObject && passRefObject.defaultYogas;else emptyList">
+    <ion-item lines="full" [color]="i%2==0?'':'light'" *ngFor="let yoga of passRefObject.defaultYogas;let i=index">
+      <ion-avatar slot="start">
+        <img [src]="yoga?.imageUrl">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{yoga?.name}}</h2>
+        <p>{{yoga?.pose}}</p>
+        <ion-text color="medium">
+          <p>{{yoga?.minutes|date:'mm:ss' }} min | {{ yoga?.recomandedTime}}</p>
+        </ion-text>
+      </ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+  </div>
+  <ng-template #emptyList>
+    <div class="ion-text-center ion-padding ion-margin">
       <ion-text color="medium">
-        <p>{{yoga?.minutes|date:'mm:ss' }} min | {{ yoga?.recomandedTime}}</p>
-      </ion-text>
-    </ion-label>
-    <ion-button fill="clear" disabled color="medium">
-      <small>swipe</small>
-      <ion-icon name="chevron-forward-outline"></ion-icon>
-    </ion-button>
-  </ion-item>
-
+        <small>
+          This list is empty. There havn't added any yogas in thise categories.
+        </small>
+      </ion-text> <br>
+    </div>
+  </ng-template>
 </ion-list>
-</ion-content>

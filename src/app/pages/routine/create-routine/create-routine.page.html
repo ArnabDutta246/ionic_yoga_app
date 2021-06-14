@@ -6,12 +6,11 @@
 
 <ion-content>
   <div *ngIf="chooseYoga">
-    <app-choose-yoga></app-choose-yoga>
+    <app-choose-yoga [passRefObject]="passRefObject" [sessionData]="sessionData"
+      [sessionDataCopyRef]="sessionDataCopyRef"></app-choose-yoga>
   </div>
-  <div *ngIf="!chooseYoga">
-    <app-setup-schedule></app-setup-schedule>
-  </div>
-  <ion-item>
+
+  <ion-item lines="none">
     <ion-buttons slot="start" *ngIf="!chooseYoga">
       <ion-button color="primary" fill="clear" (click)="chooseYoga = !chooseYoga">
         <ion-icon name="chevron-back-outline" slot="start"></ion-icon> choose yoga
@@ -19,10 +18,10 @@
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button color="primary" fill="clear" *ngIf="chooseYoga" (click)="chooseYoga = !chooseYoga">
-        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> choose yoga
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> set schedule
       </ion-button>
-      <ion-button color="primary" fill="clear" *ngIf="!chooseYoga" (click)="chooseYoga = !chooseYoga">
-        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> choose yoga
+      <ion-button color="success" fill="outline" *ngIf="!chooseYoga" (click)="chooseYoga = !chooseYoga">
+        Submit
       </ion-button>
     </ion-buttons>
   </ion-item>

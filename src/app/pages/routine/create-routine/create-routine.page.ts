@@ -16,7 +16,7 @@ export class CreateRoutinePage implements OnInit {
   chooseYoga: boolean = true;
   sessionData: Session;
   passRefObject: YogaListRef = {
-    cretadYogas: [],
+    creatadYogas: [],
     defaultYogas: [],
     routine: {
       daily: [],
@@ -29,6 +29,7 @@ export class CreateRoutinePage implements OnInit {
       sat: [],
     },
   };
+  sessionDataCopyRef: Session | {} = {};
   // constructor
   constructor(
     private session: SessionService,
@@ -40,6 +41,13 @@ export class CreateRoutinePage implements OnInit {
   private getSessionData(): void {
     this.session.watch().subscribe((res) => {
       this.sessionData = res;
+      // copy
+      Object.assign(this.sessionDataCopyRef, this.sessionData);
+      this.passRefObject.creatadYogas = this.sessionData.yogas;
+      //
+      this.fetchAllYogas();
+      // console.log(this.sessionData);
+      // console.log(this.sessionDataCopyRef);
     });
   }
   // iondidload
@@ -48,9 +56,9 @@ export class CreateRoutinePage implements OnInit {
   }
   // fetch All yogas [ default + created ]
   fetchAllYogas() {
-    let getDefaultYogas: Yoga[] = [];
     this.yogaService.getDefaultYogas().then((res) => {
-      getDefaultYogas = res;
+      this.passRefObject.defaultYogas = res;
+      console.log('..', this.passRefObject);
     });
   }
 }
