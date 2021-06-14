@@ -12,5 +12,12 @@
 </ion-toolbar>
 
 <ion-content>
-
+  <ion-row *ngIf="currWeekList.length>0">
+    <ion-col color="danger" *ngFor="let day of currWeekList;let i=index">
+      <div [ngClass]="i!==currDayIndex?'weekDays':'active'" [id]="'currWeekList'+i" (click)="fetchRoutine(i)">
+        <ion-text>{{day|date:'E'}}</ion-text><br>
+        <ion-text>{{day|date:'d'}}</ion-text>
+      </div>
+    </ion-col>
+  </ion-row>
 </ion-content>
