@@ -16,7 +16,7 @@ export class RoutinePage implements OnInit {
   // constructor
   constructor(private router: Router) {}
   // init
-  ngOnInit() {
+  async ngOnInit() {
     this.setWeek();
   }
 

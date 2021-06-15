@@ -16,7 +16,6 @@ import { ChooseYogaModule } from './choose-yoga/choose-yoga.module';
     FormsModule,
     IonicModule,
     CreateRoutinePageRoutingModule,
-
     ChooseYogaModule,
   ],
   declarations: [CreateRoutinePage],

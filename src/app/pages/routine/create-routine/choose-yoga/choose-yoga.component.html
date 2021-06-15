@@ -3,9 +3,9 @@
     Choose schedule for
   </ion-label>
 
-  <ion-select [value]="setDailyOrWeekly" (ionChange)="setUpYogaRoutine($event)">
+  <ion-select [value]="setDailyOrWeekly" (ionChange)="setUpYogaRoutineFor($event)">
     <ion-select-option value="daily" checked>daily</ion-select-option>
-    <ion-select-option value="weekly">Weekdays</ion-select-option>
+    <ion-select-option value="weekly">Weekly</ion-select-option>
   </ion-select>
 </ion-item>
 
@@ -27,8 +27,8 @@
   <ion-item-divider>
     Created yogas
   </ion-item-divider>
-  <div *ngIf="passRefObject && passRefObject.creatadYogas;else emptyList">
-    <ion-item lines="full" [color]="i%2==0?'':'light'" *ngFor="let yoga of passRefObject.creatadYogas;let i=index">
+  <div *ngIf="passRefObject && passRefObject.createdYogas;else emptyList">
+    <ion-item lines="full" [color]="i%2==0?'':'light'" *ngFor="let yoga of passRefObject.createdYogas;let i=index">
       <ion-avatar slot="start">
         <img [src]="yoga?.imageUrl">
       </ion-avatar>
@@ -37,9 +37,19 @@
         <p>{{yoga?.pose}}</p>
         <ion-text color="medium">
           <p>{{yoga?.minutes|date:'mm:ss' }} min | {{ yoga?.recomandedTime}}</p>
-        </ion-text>
+        </ion-text><br>
+
       </ion-label>
-      <ion-checkbox slot="end"></ion-checkbox>
+      <ion-button size="small" slot="end" fill="outline" color="success" *ngIf="!yoga.isSelected"
+        (click)="addOrRemoveYoga('createdYogas',yoga)">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button size="small" slot="end" fill="clear" color="danger" *ngIf="yoga?.isSelected"
+        (click)="addOrRemoveYoga('createdYogas',yoga)">
+        <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <!-- <ion-checkbox slot="end" (ionChange)="addOrRemoveYoga('createdYogas',yoga)" [checked]="yoga.isSelected">
+      </ion-checkbox> -->
     </ion-item>
   </div>
   <ion-item-divider>
@@ -55,9 +65,18 @@
         <p>{{yoga?.pose}}</p>
         <ion-text color="medium">
           <p>{{yoga?.minutes|date:'mm:ss' }} min | {{ yoga?.recomandedTime}}</p>
-        </ion-text>
+        </ion-text><br>
+
       </ion-label>
-      <ion-checkbox slot="end"></ion-checkbox>
+      <ion-button size="small" slot="end" fill="outline" color="success" *ngIf="!yoga.isSelected"
+        (click)="addOrRemoveYoga('createdYogas',yoga)">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button size="small" slot="end" fill="clear" color="danger" *ngIf="yoga?.isSelected"
+        (click)="addOrRemoveYoga('createdYogas',yoga)">
+        <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+
     </ion-item>
   </div>
   <ng-template #emptyList>

@@ -1,7 +1,7 @@
 import { Yoga } from '../yoga/yoga.model';
 
 export interface YogaListRef {
-  creatadYogas: Yoga[];
+  createdYogas: Yoga[];
   defaultYogas: Yoga[];
   routine: Routine;
 }
@@ -17,6 +17,6 @@ export interface Routine {
 }
 
 export interface YogaRef {
-  yogaId: string;
+  id: string;
   collection: string;
 }

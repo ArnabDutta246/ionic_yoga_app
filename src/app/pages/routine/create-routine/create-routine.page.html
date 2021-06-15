@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="chooseYoga">
+  <div *ngIf="chooseYoga && passRefObject.defaultYogas.length > 0">
     <app-choose-yoga [passRefObject]="passRefObject" [sessionData]="sessionData"
       [sessionDataCopyRef]="sessionDataCopyRef"></app-choose-yoga>
   </div>

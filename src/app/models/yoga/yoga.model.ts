@@ -12,4 +12,5 @@ export interface Yoga {
   createdAt: Date;
   updatedAt: Date;
   isFavourite: boolean;
+  isSelected?: boolean;
 }
