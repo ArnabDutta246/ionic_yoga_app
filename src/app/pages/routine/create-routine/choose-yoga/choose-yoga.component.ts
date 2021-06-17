@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { YogaListRef, YogaRef } from 'src/app/models/routine/routine.modal';
+import { YogaListRef } from 'src/app/models/routine/routine.modal';
 import { Session } from 'src/app/models/session/session.model';
 import { Yoga } from 'src/app/models/yoga/yoga.model';
 
@@ -43,10 +43,6 @@ export class ChooseYogaComponent implements OnInit, OnChanges {
     this.passRefObject = this.passRefObject;
     this.sessionData = this.sessionData;
     this.sessionDataCopyRef = this.sessionDataCopyRef;
-    this.mergeArr = [
-      ...this.passRefObject.createdYogas,
-      ...this.passRefObject.defaultYogas,
-    ];
     this.setUpYogaRoutineFor(null);
   }
 
@@ -60,7 +56,7 @@ export class ChooseYogaComponent implements OnInit, OnChanges {
         let findIndex =
           this.sessionDataCopyRef.routine !== null
             ? this.sessionDataCopyRef.routine[category].find(
-                (item: YogaRef) => item.id == yoga.id
+                (item: Yoga) => item.id == yoga.id
               )
             : [];
         yoga.isSelected = findIndex.length > 0 ? true : false;
@@ -110,7 +106,7 @@ export class ChooseYogaComponent implements OnInit, OnChanges {
   // check before exist
   private isExistBefore(yoga: Yoga): boolean {
     let findIndex = this.passRefObject.routine[this.currActiveArr].find(
-      (item: YogaRef) => item.id == yoga.id
+      (item: Yoga) => item.id == yoga.id
     );
     return findIndex == undefined ? false : true;
   }

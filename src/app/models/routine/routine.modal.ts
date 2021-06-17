@@ -6,17 +6,12 @@ export interface YogaListRef {
   routine: Routine;
 }
 export interface Routine {
-  daily: YogaRef[];
-  sun: YogaRef[];
-  mon: YogaRef[];
-  tue: YogaRef[];
-  wed: YogaRef[];
-  thu: YogaRef[];
-  fri: YogaRef[];
-  sat: YogaRef[];
-}
-
-export interface YogaRef {
-  id: string;
-  collection: string;
+  daily: Yoga[];
+  sun: Yoga[];
+  mon: Yoga[];
+  tue: Yoga[];
+  wed: Yoga[];
+  thu: Yoga[];
+  fri: Yoga[];
+  sat: Yoga[];
 }

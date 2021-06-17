@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { KeyboardStyle } from '@capacitor/core';
-import { Routine, YogaListRef } from 'src/app/models/routine/routine.modal';
+import { Router } from '@angular/router';
+
+import { YogaListRef } from 'src/app/models/routine/routine.modal';
 import { Session } from 'src/app/models/session/session.model';
-import { Yoga } from 'src/app/models/yoga/yoga.model';
+
+import { CommonComponentService } from 'src/app/shared/common-component/common-component.service';
 import { RoutineService } from 'src/app/shared/routine/routine.service';
 
 import { SessionService } from 'src/app/shared/session/session.service';
@@ -14,7 +16,6 @@ import { YogasService } from 'src/app/shared/yogas/yogas.service';
   styleUrls: ['./create-routine.page.scss'],
 })
 export class CreateRoutinePage implements OnInit {
-  // variables
   sessionData: Session;
   passRefObject: YogaListRef;
   sessionDataCopyRef: Session | {} = {};
@@ -22,7 +23,9 @@ export class CreateRoutinePage implements OnInit {
   constructor(
     private session: SessionService,
     private yogaService: YogasService,
-    private routineService: RoutineService
+    private routineService: RoutineService,
+    private common: CommonComponentService,
+    private router: Router
   ) {
     this.passRefObject = this.routineService.yogaListRef;
   }
@@ -65,13 +68,29 @@ export class CreateRoutinePage implements OnInit {
   }
 
   public setSchedule(): void {
-    console.log('Now the data is');
-    console.log('before..', this.passRefObject);
-    let routine: any = {};
-    Object.assign(routine, this.passRefObject);
-    delete routine.createdYogas;
-    delete routine.defaultYogas;
-    console.log('set up', routine);
-    console.log('after..', this.passRefObject);
+    this.sessionData.routine = this.passRefObject.routine;
+    console.log('now session data', this.sessionData);
+    this.routineService.storeRoutine(this.sessionData).then((res) => {
+      res ? this.successMsg() : this.errorHandler();
+    });
+  }
+  // creste successfull
+  private successMsg(): void {
+    this.common.sucessAlert(
+      'This yoga routine schedules  successfully. You can update and delete it later.'
+    );
+    this.goToRoutinePage();
+  }
+  // err handler
+  private errorHandler(): void {
+    this.common.errorAlert(
+      ['Please Check and try again. Something went wrong'],
+      'danger'
+    );
+  }
+
+  // go to routine page
+  private goToRoutinePage(): void {
+    this.router.navigate(['/home/routine']);
   }
 }
