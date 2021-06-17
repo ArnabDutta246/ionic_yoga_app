@@ -29,7 +29,7 @@ Sign-In Page | Sign-Up Page | Custom alert |    Profile   |
 ------------ | ------------ | ------------ | ------------ |
 <img align="center" alt="Sign-In Page" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/sign-in.JPG" />|<img align="center" alt="Sign-Up Page" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/sign-up.JPG" />|<img align="center" alt="Validation" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/validation.JPG" />|<img align="center" alt="Profile" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/profile.JPG" />
 
-## CRUD actions of yoga
+## CRUD actions of yoga set 
 Yoga list Create (using reactive form),update , delete and imediate response update in session and storage these actions are handled is module.State management system (with MVC) pattern implemented by using RXJs observables, Behaviour Subject.
 
  Create Yoga | List of Yoga | Yoga Details |   CRUD Yoga  |
@@ -37,6 +37,12 @@ Yoga list Create (using reactive form),update , delete and imediate response upd
 <img align="center" alt="Create Yoga" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/yoga-create.JPG" />|<img align="center" alt="List yoga" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/yoga-list.JPG" />|<img align="center" alt="Details" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/yoga-details.JPG" />|<img align="center" alt="Crud action" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/CRUD-actions.JPG" />
 
 
+## Routine/Schedule 
+Using RXJs observables, Behaviour Subject person can set daily or weekly different day basis yoga prectice schedule. Where person can set or update yoga schedule.
+
+ Create Yoga | List of Yoga | Yoga Details |   CRUD Yoga  |
+------------ | ------------ | ------------ | ------------ |
+<img align="center" alt="Daily yoga list" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/daily-yoga-list.JPG" />|<img align="center" alt="List yoga" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/daily-yoga-list-2.JPG" />|<img align="center" alt="Create daily yoga list" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/create-daily-yoga-list.JPG" />|<img align="center" alt="Create daily yoga list" width="250px" src="https://github.com/ArnabDutta246/ionic_yoga_app/blob/main/src/assets/screenshot/create-daily-yoga-list-2.JPG" />
 
 <br/>
 
