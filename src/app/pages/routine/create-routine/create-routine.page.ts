@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KeyboardStyle } from '@capacitor/core';
-import { YogaListRef } from 'src/app/models/routine/routine.modal';
+import { Routine, YogaListRef } from 'src/app/models/routine/routine.modal';
 import { Session } from 'src/app/models/session/session.model';
 import { Yoga } from 'src/app/models/yoga/yoga.model';
 import { RoutineService } from 'src/app/shared/routine/routine.service';
@@ -15,7 +15,6 @@ import { YogasService } from 'src/app/shared/yogas/yogas.service';
 })
 export class CreateRoutinePage implements OnInit {
   // variables
-  chooseYoga: boolean = true;
   sessionData: Session;
   passRefObject: YogaListRef;
   sessionDataCopyRef: Session | {} = {};
@@ -63,5 +62,16 @@ export class CreateRoutinePage implements OnInit {
         this.passRefObject.routine[key] = this.sessionData.routine[key];
       });
     }
+  }
+
+  public setSchedule(): void {
+    console.log('Now the data is');
+    console.log('before..', this.passRefObject);
+    let routine: any = {};
+    Object.assign(routine, this.passRefObject);
+    delete routine.createdYogas;
+    delete routine.defaultYogas;
+    console.log('set up', routine);
+    console.log('after..', this.passRefObject);
   }
 }

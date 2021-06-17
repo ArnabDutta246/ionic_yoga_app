@@ -3,29 +3,16 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>create-routine</ion-title>
+    <!-- <ion-title>Create routine</ion-title> -->
+    <ion-button color="success" fill="clear" slot="end" (click)="setSchedule()">
+      <ion-icon name="alarm-outline" slot="end"></ion-icon> Schedule
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf="chooseYoga && passRefObject.defaultYogas.length > 0">
+  <div *ngIf=" passRefObject.defaultYogas.length > 0">
     <app-choose-yoga [passRefObject]="passRefObject" [sessionData]="sessionData"
       [sessionDataCopyRef]="sessionDataCopyRef"></app-choose-yoga>
   </div>
-
-  <ion-item lines="none">
-    <ion-buttons slot="start" *ngIf="!chooseYoga">
-      <ion-button color="primary" fill="clear" (click)="chooseYoga = !chooseYoga">
-        <ion-icon name="chevron-back-outline" slot="start"></ion-icon> choose yoga
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button color="primary" fill="clear" *ngIf="chooseYoga" (click)="chooseYoga = !chooseYoga">
-        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon> set schedule
-      </ion-button>
-      <ion-button color="success" fill="outline" *ngIf="!chooseYoga" (click)="chooseYoga = !chooseYoga">
-        Submit
-      </ion-button>
-    </ion-buttons>
-  </ion-item>
 </ion-content>
